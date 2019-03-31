@@ -1,0 +1,33 @@
+#访问http://localhost:5050
+server:
+  port: 5050
+
+spring:
+  application:
+    name: monitor-service
+  security:
+    user:
+      name: root
+      password: root
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    metadata-map:
+      user.name: "root"         #These two are needed so that the server
+      user.password: "root" #can access the protected client endpoints
+  client:
+    serviceUrl:
+      defaultZone: http://root:root@localhost:8080/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  #        SpringBootActuator监控暴露所有接口
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>timing.ukulele</groupId>
+    <artifactId>boot-master</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>monitor</module>
+        <module>register</module>
+        <module>trace</module>
+        <module>circuit</module>
+    </modules>
+    <name>boot-master</name>
+    <packaging>pom</packaging>
+    <url>https://gitee.com/fengxici</url>
+    <description>公共组件项目</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--<java.version>11</java.version>-->
+        <jaxb-version>2.3.1</jaxb-version>
+        <javax.activation-version>1.1.1</javax.activation-version>
+        <!--spring-boot-admin-->
+        <spring-boot-admin-starter-version>2.1.3</spring-boot-admin-starter-version>
+        <!--该版本及更高版本使用到了armeria,暂无参考资料，不知如何配置-->
+        <!--<io.zipkin.java-version>2.12.4</io.zipkin.java-version>-->
+        <io.zipkin.java-version>2.12.3</io.zipkin.java-version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.3.RELEASE</version>
+    </parent>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!--<version>Finchley.SR1</version>-->
+                <version>Greenwich.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--TODO 因为JAXB-API是java ee的一部分，在jdk9之后中没有在默认的类路径中；-->
+            <!--java ee api在jdk中还是存在的，默认没有加载而已，jdk9之后中引入了模块的概念，可以使用-->
+            <!--模块命令–add-modules java.xml.bind引入jaxb-api;-->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jaxb-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>${javax.activation-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin-starter-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>${io.zipkin.java-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>${io.zipkin.java-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--<repositories>-->
+    <!--<repository>-->
+    <!--<id>repo.spring.io-milestones</id>-->
+    <!--<name>repo.spring.io-milestones</name>-->
+    <!--<url>https://repo.spring.io/libs-milestone-local</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>repo.spring.io-snapshots</id>-->
+    <!--<name>repo.spring.io-snapshots</name>-->
+    <!--<url>https://repo.spring.io/libs-snapshot-local</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>true</enabled>-->
+    <!--</snapshots>-->
+    <!--</repository>-->
+    <!--</repositories>-->
+</project>
