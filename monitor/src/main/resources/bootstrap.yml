@@ -9,6 +9,15 @@ spring:
     user:
       name: root
       password: root
+  mail:
+    host: smtp.qq.com
+    username: 479036675
+    password:
+  boot:
+    admin:
+      notify:
+        mail:
+          to: 910980941@qq.com
 
 eureka:
   instance:
