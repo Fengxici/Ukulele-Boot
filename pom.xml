@@ -15,7 +15,7 @@
     </modules>
     <name>boot-master</name>
     <packaging>pom</packaging>
-    <url>https://gitee.com/fengxici</url>
+    <url>https://fengxici.github.io</url>
     <description>公共组件项目</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
