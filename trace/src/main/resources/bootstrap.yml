@@ -1,19 +1,20 @@
 #访问http://localhost:7070/zipkin/index.html
-server:
-  port: 7070
+QUERY_PORT: 7070
 spring:
   application:
     name: trace-server
   security:
-      user:
-        name: root
-        password: root
+    user:
+      name: root
+      password: root
+  profiles:
+    include: shared
 
 eureka:
   instance:
     hostname: localhost
     prefer-ip-address: true
-    instance-id: ${eureka.instance.hostname}:${server.port}
+    instance-id: ${eureka.instance.hostname}:${QUERY_PORT}
     metadata-map:
       user.name: "root"         #These two are needed so that the server
       user.password: "root" #can access the protected client endpoints
