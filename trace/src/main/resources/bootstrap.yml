@@ -30,8 +30,13 @@ management:
         include: "*"
 #        SpringBootActuator监控暴露所有接口
   endpoint:
-     health:
-          show-details: ALWAYS
+    health:
+      enabled: true
+      show-details: ALWAYS
+    prometheus:
+      enabled: true
+    info:
+      enabled: true
   metrics:
     web:
       server:
