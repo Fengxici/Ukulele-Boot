@@ -1,0 +1,52 @@
+#访问http://localhost:5050
+server:
+  port: 5050
+
+spring:
+  application:
+    name: monitor-service
+  security:
+    user:
+      name: root
+      password: root
+#  mail:
+#     host: smtp.zhiyoubao.com #发送邮件服务器
+#     username: zicong.lv@zhiyoubao.com #QQ邮箱
+#     password:   #客户端授权码
+#     protocol: smtp #发送邮件协议
+#     properties.mail.smtp.auth: true
+#     properties.mail.smtp.port: 25 #端口号 465、995、993
+#     properties.mail.display.sendmail: Javen #可以任意
+#     properties.mail.display.sendname: Spring Boot Guide Email #可以任意
+#     properties.mail.smtp.starttls.enable: true
+#     properties.mail.smtp.starttls.required: true
+#     properties.mail.smtp.ssl.enable: true
+#     default-encoding: utf-8
+#     from: 910980941@qq.com #与上面的username保持一致
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          to: 479036675@qq.com
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    metadata-map:
+      user.name: "root"         #These two are needed so that the server
+      user.password: "root" #can access the protected client endpoints
+  client:
+    serviceUrl:
+      defaultZone: http://root:root@localhost:8080/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  #        SpringBootActuator监控暴露所有接口
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,52 @@
+#访问http://localhost:7070/zipkin/index.html
+armeria:
+  ports:
+    - port: 7070
+  enable-metrics: false
+spring:
+  application:
+    name: trace-server
+  security:
+    user:
+      name: root
+      password: root
+  profiles:
+    include: shared
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:7070
+    metadata-map:
+      user.name: "root"         #These two are needed so that the server
+      user.password: "root" #can access the protected client endpoints
+  client:
+    serviceUrl:
+      defaultZone: http://root:root@localhost:8080/eureka
+      ##,http://root:root@localhost:8001/eureka,http://root:root@localhost:8002/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  #        SpringBootActuator监控暴露所有接口
+  endpoint:
+    health:
+#      enabled: true
+      show-details: ALWAYS
+#    prometheus:
+#      enabled: true
+#    info:
+#      enabled: true
+#  metrics:
+#    web:
+#      server:
+#        request:
+#          autotime:
+#            enabled: false
+  server:
+    port: 7070
+server:
+  port: 7070
