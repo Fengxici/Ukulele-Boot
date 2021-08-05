@@ -13,7 +13,6 @@ import de.codecentric.boot.admin.server.config.AdminServerProperties;
  * •@author: 吕自聪
  * •@date: 2019/10/16
  */
-
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final String adminContextPath;
